@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>API So Prekocko</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="logo">
+    <img src="image/logo.png" alt="logo entreprise So Prekocko">
+  </div>
+  <div class="titre">
+  <h1>API So Prekocko</h1>
+
+  <h3>Table des matières</h3>
+    </div>
+  <div class="method-summary">
+  <h4><a href="#sauce">Sauces</a></h4>
+  <ul>
+    <li><a href="#deleteSauce"><code><span class="http-method">delete</span> /api/sauces/{:id}</code></a></li>
+    <li><a href="#putSauce"><code><span class="http-method">put</span> /api/sauces/{:id}</code></a></li>
+    <li><a href="#postSauce"><code><span class="http-method">post</span> /api/sauce</code></a></li>
+    <li><a href="#getSauce"><code><span class="http-method">get</span> /api/sauces</code></a></li>
+    <li><a href="#postSauceLike"><code><span class="http-method">post</span> /api/sauce/{:id}/like</code></a></li>
+    <li><a href="#getSauceId"><code><span class="http-method">get</span> /api/sauce/{:id}</code></a></li>
+</ul>
+  <h4><a href="#User">User</a></h4>
+  <ul>
+    <li><a href="#signUpUser"><code><span class="http-method">post</span> /api/auth/signup</code></a></li>
+    <li><a href="#loginUser"><code><span class="http-method">post</span> /api/auth/login</code></a></li>
+  </ul>
+</div>
+  </div> <!-- method -->
+  <hr />
+  <h1><a name="sauce">Sauce</a></h1>
+  <hr>
+  <div class="method"><a name="deleteSauce" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="delete"><code class="huge"><span class="http-method">delete</span> /api/sauces/{:id}</code></pre>
+    </div>
+    <div class="method-summary">La suppression des sauces avec l'ID (<span class="nickname">deleteSauce</span>)</div>
+    <div class="method-notes">Supprime la sauce avec l'ID fourni via une chaine de caractère (String).</div>
+
+    <h3 class="field-label">Important !</h3>
+    <div class="field-items">
+      <div class="param">Id est requis </div>
+
+    </div> <!-- field-items -->
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">API</h3>
+    <h4>Format de l'API</h4>
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">201</h4>
+    no content ✔️
+    <a href="#"></a>
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="putSauce" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="put"><code class="huge"><span class="http-method">put</span> /api/sauces/{:id}</code></pre>
+    </div>
+    <div class="method-summary">Mise à jour des sauce avec l'ID (<span class="nickname">putSauce</span>)</div>
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+
+      {
+        sauce :
+        Chaîne,
+        image :
+        Fichier
+       }
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  req.body.name
+  req.body.heat
+  req.body.sauce
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Met à jour la sauce avec l'identifiant fourni. Si une image est téléchargée, capturez-la et mettez à jour l'image URL des sauces. Si aucun fichier n'est fourni, les détails de la sauce figurent directement dans le corps de la demande. Si un
+    fichier est fourni, la sauce avec chaîne est en req.body.sauce.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page valide ✔️
+    <a href="#"></a>
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="postSauce" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="post"><code class="huge"><span class="http-method">post</span> /api/sauce</code></pre>
+    </div>
+    <div class="method-summary">Mise à jour des sauce avec l'ID (<span class="nickname">postSauce</span>)</div>
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+
+      { sauce :
+      Chaîne,
+      image :
+      Fichier }
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Capture et enregistre l'image, analyse la sauce en utilisant une chaîne de caractères et l'enregistre dans la base de données, en définissant correctement son image URL. Remet les sauces aimées et celles détestées à 0, et les sauces usersliked et
+    celles usersdisliked aux tableaux vides.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page valide ✔️
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="getSauce" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="get"><code class="huge"><span class="http-method">get</span> /api/sauces</code></pre>
+    </div>
+    <div class="method-summary">Visualisation toutes les sauces avec l'ID (<span class="nickname">getSauce</span>)</div>
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+
+      Tableau des sauces
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Renvoie le tableau de toutes les sauces dans la base de données
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page valide ✔️
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="postSauceLike" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="post"><code class="huge"><span class="http-method">post</span> /api/sauce/{:id}/like</code></pre>
+    </div>
+    <div class="method-summary">Like ou Unlike des sauce avec l'ID (<span class="nickname">postSauceLike</span>)</div>
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+
+      { userId:
+        Chaîne,
+        j'aime :
+        Nombre
+      }
+
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Définit le statut "j'aime" pour userID fourni. Si j'aime = 1, l'utilisateur aime la sauce. Si j'aime = 0, l'utilisateur annule ce qu'il aime ou ce qu'il n'aime pas. Si j'aime = -1, l'utilisateur n'aime pas la sauce. L'identifiant de l'utilisateur doit être ajouté ou supprimé du tableau approprié, en gardant une trace de ses préférences et en l'empêchant d'aimer ou de ne pas aimer la même sauce plusieurs fois. Nombre total de "j'aime" et de "je n'aime pas" à mettre à jour avec chaque "j'aime".
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page valide ✔️
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="getSauceId" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="get"><code class="huge"><span class="http-method">get</span> /api/sauce/{:id}</code></pre>
+    </div>
+    <div class="method-summary">Voir une seule sauce avec l'ID (<span class="nickname">getSauceId</span>)</div>
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+
+      Tableau  des sauces
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Renvoie la sauce avec l'ID fourni
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">400</h4>
+    ID invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Pages non trouvée ❌
+    <a href="#"></a>
+    <h4 class="field-label">200</h4>
+    Page valide ✔️
+
+  </div> <!-- method -->
+  <hr />
+  <h1><a name="User">User</a></h1>
+
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="signUpUser" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="post"><code class="huge"><span class="http-method">post</span> /api/auth/signup</code></pre>
+    </div>
+    <div class="method-summary">S'enregistrer avec l'ID (<span class="nickname">signUpUser</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+      <a href="#User">
+        { message:
+        string }
+</a>
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "nom" : "name",
+  "prenom" : "lastName",
+  "password" : "password",
+  "id" : 0,
+  "email" : "email",
+  "pseudo" : "username"
+}</code></pre>
+    <h3 class="field-label">Example</h3>
+    <div class="example-data-content-type">Content-Type: application/xml</div>
+    <pre class="example"><code><User>
+  <id>123456789</id>
+  <username>aeiou</username>
+  <firstName>aeiou</firstName>
+  <lastName>aeiou</lastName>
+  <email>aeiou</email>
+  <password>aeiou</password>
+  <userStatus>123</userStatus>
+</User></code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Chiffre le mot de passe de l'utilisateur, ajoute l'utilisateur à la base de données
+    <ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">200</h4>
+    Opération réussie ✔️
+    <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    User invalide ❌
+    <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    User non trouvé ❌
+    <a href="#"></a>
+  </div> <!-- method -->
+  <hr />
+  <div class="method"><a name="loginUser" />
+    <div class="method-path">
+      <a class="up" href="#">Up</a>
+      <pre class="post"><code class="huge"><span class="http-method">post</span> /api/auth/login</code></pre>
+    </div>
+    <div class="method-summary">Se loguer avec l'ID (<span class="nickname">loginUser</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Parametre Query</h3>
+    <div class="field-items">
+      <div class="param">username (requie)</div>
+
+      <div class="param-desc"><span class="param-type">Parametre Query</span> &mdash; Le username pour le login </div>
+      <div class="param">password (requie)</div>
+
+      <div class="param-desc"><span class="param-type">Parametre Query</span> &mdash; Le password pour le login </div>
+    </div> <!-- field-items -->
+
+
+    <h3 class="field-label">Réponse attendue</h3>
+    <div class="return-type">
+      { userId:
+      string,
+      token:
+      string }
+
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example Username</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+    <h3 class="field-label">Example Password</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+a voir
+}</code></pre>
+
+    <h3 class="field-label">Spécificité</h3>
+    Vérifie les informations d'identification de l'utilisateur, en renvoyant l'identifiant userID depuis la base de données et un jeton Web JSON signé (contenant également l'identifiant userID)<ul>
+      <li><code>application/json</code></li>
+      <li><code>application/xml</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses possibles</h3>
+    <h4 class="field-label">200</h4>
+    opération réussie ✔️
+    <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    Username/password invalide ❌
+    <a href="#"></a>
+    <hr>
+    <footer>
+      <div class="footer">
+        <h5>Fait avec 💗 par Benniget</h5>
+      </div>
+    </footer>
