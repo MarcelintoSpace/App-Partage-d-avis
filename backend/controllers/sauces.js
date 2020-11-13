@@ -18,7 +18,7 @@ exports.createSauce = (req, res, next) => {
   });
   //Engeristrement de l'objet dans la base de données
   sauce.save()
-  //création d'un Promise
+    //création d'un Promise
     .then(() => res.status(201).json({
       message: 'Sauce enregistrée !'
       //réponse de réussite code 201
@@ -32,21 +32,21 @@ exports.createSauce = (req, res, next) => {
 exports.getOneSauce = (req, res, next) => {
   //Récupération d'une seule Sauce
   Sauce.findOne({
-    //définition avec Params du même id que la sauce demandée
-    _id: req.params.id
-  })
-  //création d'un Promise
-  .then(
-    (sauce) => {
-      res.status(200).json(sauce);
-      //réponse de succès code 200
-    }
-  ).catch((error) => {
-    res.status(404).json({
-      error
-      //réponse d'erreur avec code 404, sauce non trouvée
+      //définition avec Params du même id que la sauce demandée
+      _id: req.params.id
+    })
+    //création d'un Promise
+    .then(
+      (sauce) => {
+        res.status(200).json(sauce);
+        //réponse de succès code 200
+      }
+    ).catch((error) => {
+      res.status(404).json({
+        error
+        //réponse d'erreur avec code 404, sauce non trouvée
+      });
     });
-  });
 };
 
 exports.modifySauce = (req, res, next) => {
@@ -61,7 +61,7 @@ exports.modifySauce = (req, res, next) => {
   };
   //Modification de la sauce avec la méthode 'upateOne'
   Sauce.updateOne({
-    //sélection de l'objet par son id
+      //sélection de l'objet par son id
       _id: req.params.id
     }, {
       //insertion du nouvel objet avec le raccourci 'spread'
@@ -112,81 +112,44 @@ exports.deleteSauce = (req, res, next) => {
 exports.getAllSauces = (req, res, next) => {
   //Récupération de la liste compléte
   Sauce.find()
-  //retour d'une Promise
-  .then((sauces) => {
-    res.status(200).json(sauces);
-    //réponse de réussite code 200
-  }).catch(
-    (error) => {
-      res.status(400).json({
-        error
-        //réponse d'erreur avec code 400
-      });
-    }
-  );
+    //retour d'une Promise
+    .then((sauces) => {
+      res.status(200).json(sauces);
+      //réponse de réussite code 200
+    }).catch(
+      (error) => {
+        res.status(400).json({
+          error
+          //réponse d'erreur avec code 400
+        });
+      }
+    );
 };
 
 exports.createLike = (req, res) => {
-//Récupération d'une seule Sauce avec 'findOne'
-Sauce.findOne({
-    _id: req.body.id
-  }, (err, sauce) => {
-    //vérification si la sauce existe
-    if (err) {
-      res.json({
-        success: false,
-        message: 'Id de sauce invalide'
-      }); // retourne un message d'erreur
-    } else {
-      if (!sauce) {
-        res.json({
-          success: false,
-          message: 'Sauce non trouvée'
-        }); // retourne un message d'erreur
-      } else {
-        // vérification que l'utilisateur qui a posté sa sauce ne puisse pas mettre un like
-        if (user.username === sauce.createSauce) {
-          res.json({
-            success: false,
-            messagse: 'Vous ne pouvez pas aimer votre propre sauce'
-          }); // retourne un message d'erreur
-        } else {
-          // vérification pour éviter les doublon de like
-          if (sauce.like.includes(user.username)) {
-            res.json({
-              success: false,
-              message: 'Vous aimez déjà cette sauce'
-            }); // retourne un message d'erreur
-          } else {
-            // la personne n'aime pas la sauce
-            if (req.body.like == 1) {
-              sauce.like--; // ajout d'un dislike
-              sauce.like.push(user.username); // ajout du username + dislike dans le tableau
-            }
-              // la personne aime la sauce
-              if (req.body.like == 1) {
-                sauce.like++; // ajout d'un like
-                sauce.like.push(user.username); // ajout du username + like dans le tableau
-              }
-              // la personne s'est trompé
-              if (req.body.like == 0) {
-                sauce.like--; // annulation du like
-                sauce.like.splice(arrayIndex, 1);
+  //Récupération d'une seule Sauce avec 'findOne'
+  Sauce.findOne({
+    _id: req.params.id
+  })
+  // la personne n'aime pas la sauce
+  if (req.body.disLikes == 1) {
+    sauce.disLikes--; // ajout d'un dislike
+    sauce.disLikedBy.push(arrayIndex, 1); // ajout du username + dislike dans le tableau
+    sauce.save()
+  }
+  // la personne aime la sauce
+  if (req.body.likes == 1) {
+    sauce.likes++; // ajout d'un like
+    sauce.likedBy.push(arrayIndex, 1); // ajout du username + like dans le tableau
+    sauce.save()
+  }
+  // la personne s'est trompé
+  if (req.body.likes == 0) {
+    sauce.likes--; // annulation du like
+    sauce.likedBy.splice(arrayIndex, 1);
+    sauce.save()
 
-              }
-              sauce.save()
-              //création d'un Promise
-                .then(() => res.status(200).json({
-                  message: 'like enregistrée !'
-                  //réponse de réussite code 201
-                }))
-                .catch(error => res.status(408).json({
-                  error
-                  //réponse d'erreur avec code 400
-                }));
-            }
-        }
-      }
-    }
-})
+  }
+
+
 };
