@@ -34,15 +34,19 @@ const sauceSchema = mongoose.Schema({
   },
   likes: {
     type: Number, //type attendu: un Nombre
+    default: 0
   },
-  likedBy: {
+  usersLiked: {
     type: Array, //type attendu: un Tableau
+    default: []
   },
   dislikes: {
     type: Number, //type attendu: un Nombre
+    default: 0
   },
-  dislikedBy: {
+  usersDisliked: {
     type: Array, //type attendu: un Tableau
+    default: []
   },
 });
 

@@ -110,7 +110,7 @@ exports.deleteSauce = (req, res, next) => {
 };
 
 exports.getAllSauces = (req, res, next) => {
-  //Récupération de la liste compléte
+  //Récupération de la liste compléte des sauces
   Sauce.find()
     //retour d'une Promise
     .then((sauces) => {
@@ -128,28 +128,43 @@ exports.getAllSauces = (req, res, next) => {
 
 exports.createLike = (req, res) => {
   //Récupération d'une seule Sauce avec 'findOne'
-  Sauce.findOne({
+Sauce.findOne({
     _id: req.params.id
   })
+.then(sauce => {
   // la personne n'aime pas la sauce
-  if (req.body.disLikes == 1) {
-    sauce.disLikes--; // ajout d'un dislike
-    sauce.disLikedBy.push(arrayIndex, 1); // ajout du username + dislike dans le tableau
-    sauce.save()
+  if (req.body.like == -1) {
+    sauce.dislikes++; // ajout d'un dislike
+    sauce.usersDisliked.push(req.body.userId); // ajout du username + dislike dans le tableau
+    sauce.save();
   }
   // la personne aime la sauce
-  if (req.body.likes == 1) {
+  if (req.body.like == 1) {
     sauce.likes++; // ajout d'un like
-    sauce.likedBy.push(arrayIndex, 1); // ajout du username + like dans le tableau
-    sauce.save()
+    sauce.usersLiked.push(req.body.userId); // ajout du username + like dans le tableau
+    sauce.save();
   }
-  // la personne s'est trompé
-  if (req.body.likes == 0) {
+
+  // la personne s'est trompée
+  if (req.body.like == 0) {
+    //ajout de conditions pour que la suppression du Like soit attribué à l'id
+    if (sauce.usersLiked.indexOf(req.body.userId) != -1) {
     sauce.likes--; // annulation du like
-    sauce.likedBy.splice(arrayIndex, 1);
-    sauce.save()
+    sauce.usersLiked.splice(sauce.usersLiked.indexOf(req.body.userId), 1); //Suppression du like en fonction de son id
+  }else{
+    // conditions pour le dislike
+    sauce.dislikes--; // annulation du dislike
+    sauce.usersDisliked.splice(sauce.usersDisliked.indexOf(req.body.userId), 1); // Suppression du dislike en fonction de son id
+  }
+    sauce.save();
 
   }
-
+  //réponse de réussite code 200
+  res.status(200).json({message:'like pris en compte'})
+})
+.catch(error => {
+res.status(500).json({error})
+//réponse d'erreur avec code 500
+});
 
 };
