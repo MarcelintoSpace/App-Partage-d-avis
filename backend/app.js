@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://marcelintospace:kornog53Cmoi@cluster0.4ys4s.mong
 //appel de la méthode Express
 const app = express();
 
-//Insertion Middleware CORS
+//Insertion CORS
 app.use((req, res, next) => {
   //qui peut accéder à l'API
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -36,7 +36,7 @@ app.use((req, res, next) => {
 //pour tranformer les requête en JSON
 app.use(bodyParser.json());
 
-//gestionnaire de routage
+//gestion des routes principales
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);

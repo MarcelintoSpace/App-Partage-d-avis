@@ -1,5 +1,6 @@
 //Importation du package Mongoose
 const mongoose = require('mongoose');
+const {ObjectId} = mongoose.Schema.Types
 
 //Création du shéma de données
 const sauceSchema = mongoose.Schema({
@@ -33,14 +34,12 @@ const sauceSchema = mongoose.Schema({
   },
   likes: {
     type: Number, //type attendu: un Nombre
-    default: 0 // par default, il y a 0 like
   },
   likedBy: {
     type: Array, //type attendu: un Tableau
   },
   dislikes: {
     type: Number, //type attendu: un Nombre
-    default: 0 // par default, il y a 0 like
   },
   dislikedBy: {
     type: Array, //type attendu: un Tableau
